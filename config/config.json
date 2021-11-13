@@ -66,7 +66,7 @@
         },
         "coin_task": {           // 任务:每日投币获取经验，下面为本功能详细配置
             "enable": false,      // 任务开关，值为true或false分别代表开启和关闭
-            "num": 5,            // 投币数量，值为整数(范围0-5)，如果当天已经投币超过这个数量则不会继续投币否则补齐剩余数量，硬币不够则不会投币
+            "num": 1,            // 投币数量，值为整数(范围0-5)，如果当天已经投币超过这个数量则不会继续投币否则补齐剩余数量，硬币不够则不会投币
             "target_exp": 28800, // 目标经验值，值为整数，达到经验目标则停止投币
             "delay": [0, 2],  // 延时，值为二维整数数组，模板意思是每次投币后随机延时0-2秒进行下一次投币
             "do_task": [1],   // 投币模式，值为整数数组，按照数字顺序执行不同投币模式
@@ -162,7 +162,7 @@
             "filter": "25900|1-30,35,55;25966|5,15,35-" //过滤漫画参数，值为字符串，格式为"漫画mc号1|章节序号1,章节序号2;漫画mc号2|章节序号1,章节序号2"这样的格式指定要购买的漫画
         },
         "judgement_task": {      //  任务:风纪委员投票
-            "enable": true,      //  任务开关，值为true或false分别代表开启和关闭
+            "enable": false,      //  任务开关，值为true或false分别代表开启和关闭
             "run_once": true,   //没有案件立即退出，值为true或false，值为false才会等待超时退出(Actions上默认)，云函数上推荐设置为true并每隔30分钟调用此功能
             "params": {      // 默认投票参数，vote值程序会自动使用从众法填写，注意此项下面的可选子参数的值不止vote和attr两个，其他参数请看项目的说明文件(其他参数均为非必须参数可以不需要)
                 "vote": 4,   // 投票类型，值为整数，4为投删除票，其他取值看项目说明文件，非必须参数此行可以删除但不建议
@@ -189,6 +189,9 @@
 
             "title": "B站助手脚本消息推送", // 此为自定义变量，用于下面hooks消息推送接口引用
             "SendKey": "xxxxx",
+            "WecomApi": "",  // Wecom酱api地址
+            "WecomKey": "",  // Wecom酱的SendKey
+            "PushPlus": "",  // PushPlus Token
         /*  "email": "",
             "telegram_bot_token": "",
             "telegram_bot_chatid": "",
@@ -208,13 +211,14 @@
             }/*,
             {
                 "enable": true,
-                "name": "server酱消息推送",
-                "msg_separ": "\n\n",
+                "name": "PushPlus推送",
+                "msg_separ": "nn",
                 "method": 1,
-                "url": "https://sc.ftqq.com/{SCKEY}.send",
+                "url": "http://www.pushplus.plus/send",
                 "params": {
-                    "text": "{title}",
-                    "desp": "{msg_simple}" 
+                    "token": "{226e7e4a47264280b3799ed26ec0ffdf}",
+                    "title": "{title}",
+                    "content": "{msg_raw}"
                 }
             }, //若要实现其他消息推送接口，需要自己查阅相关文档构建method，url和params三个参数，下面是邮箱推送和telegram_bot推送的例子，其他平台自行探索
             {
@@ -257,9 +261,9 @@
     "random": 0,          // 随机延时范围，单位为秒，设置为0不启用，也可以使用命令行启用（命令行优先），可运行命令 python3 BiliExp.py -h 查看
     "users": [{                 //账户数组，每个账户包含一个cookieDatas和tasks参数，使用actions的用户可以使用secrets(biliconfig)指定cookie而不用本参数
         "cookieDatas": {        // cookie获取方式见项目说明
-            "SESSDATA": "xxxxx",
-            "bili_jct": "xxxxx",
-            "DedeUserID": "xxxxx"
+            "SESSDATA": "3f70a098%2C1652355071%2Cd8318%2Ab1",
+            "bili_jct": "11103fae0af450f89f96ba88ee09ece0",
+            "DedeUserID": "311700631"
         },
         "show_name": "", /* 昵称，用于日志，消息推送，填空则默认使用账号昵称，在actions上不想显示真实昵称时使用
         /* 下面tasks参数与最上面default参数作用相同，但优先级更高，用于定制每个账号的参数，
