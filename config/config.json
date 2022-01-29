@@ -261,9 +261,9 @@
     "random": 0,          // 随机延时范围，单位为秒，设置为0不启用，也可以使用命令行启用（命令行优先），可运行命令 python3 BiliExp.py -h 查看
     "users": [{                 //账户数组，每个账户包含一个cookieDatas和tasks参数，使用actions的用户可以使用secrets(biliconfig)指定cookie而不用本参数
         "cookieDatas": {        // cookie获取方式见项目说明
-            "SESSDATA": "3f70a098%2C1652355071%2Cd8318%2Ab1",
-            "bili_jct": "11103fae0af450f89f96ba88ee09ece0",
-            "DedeUserID": "311700631"
+            "SESSDATA": "",
+            "bili_jct": "",
+            "DedeUserID": ""
         },
         "show_name": "", /* 昵称，用于日志，消息推送，填空则默认使用账号昵称，在actions上不想显示真实昵称时使用
         /* 下面tasks参数与最上面default参数作用相同，但优先级更高，用于定制每个账号的参数，
@@ -272,9 +272,9 @@
         "tasks": {}
     }/*, { //下面注释掉的是第二个账号的参数例子，以此类推多个账号，单账号仅填写上面内容
         "cookieDatas": {
-            "SESSDATA": "4a5f1c63%2C1785313721%2Cdf9fc*a1",
-            "bili_jct": "cf28ba45824d443646907a5c4da8cf1",
-            "DedeUserID": "914624742"
+            "SESSDATA": "",
+            "bili_jct": "",
+            "DedeUserID": ""
         },
         "show_name": "账号2",
         "tasks": {
